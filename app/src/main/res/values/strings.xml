@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">tentwenty</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="watch">Watch</string>
+    <string name="media_library">Media Library</string>
+    <string name="more">More</string>
+    <string name="internet_error">The internet connection appears to be offline.</string>
+    <string name="free_guy">Free Guy</string>
+    <string name="get_tickets">Get Tickets</string>
+    <string name="watch_trailer">Watch Trailer</string>
+    <string name="geners">Geners</string>
+    <string name="overview">Overview</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.asad.tentwenty.ui.main.watch.adapter.UpComingMoviesItemViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:onClick="@{()-> viewModel.onItemClick()}"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0.1dp">
+
+            <ImageView
+                android:id="@+id/iv_movie_cover"
+                imageUrl="@{viewModel.image}"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_default"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_gradient"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_movie_cover"
+                app:layout_constraintEnd_toEndOf="@id/iv_movie_cover"
+                app:layout_constraintStart_toStartOf="@id/iv_movie_cover" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:hint="@string/free_guy"
+                android:text="@{viewModel.name}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_movie_cover"
+                app:layout_constraintStart_toStartOf="@+id/iv_movie_cover" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

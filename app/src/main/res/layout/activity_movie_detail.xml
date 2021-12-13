@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.asad.tentwenty.ui.detail.MovieDetailViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:paddingBottom="16dp"
+            android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                tools:context=".ui.detail.MovieDetailActivity">
+
+                <ImageView
+                    android:id="@+id/iv_cover"
+                    imageUrl="@{viewModel.moviePoster}"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/ic_default" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_item_detail_gradient"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_gradient"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:adjustViewBounds="true"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Watch"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+                    app:layout_constraintStart_toEndOf="@+id/iv_back"
+                    app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+                <TextView
+                    android:id="@+id/tv_movie_release_date"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@{viewModel.movieReleaseDate}"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_get_tickets"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_get_tickets"
+                    app:layout_constraintStart_toStartOf="@+id/tv_get_tickets"
+                    tools:text="In theaters december 22, 2021" />
+
+                <TextView
+                    android:id="@+id/tv_get_tickets"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_filled_btn"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:gravity="center"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:text="@string/get_tickets"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_play"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_play"
+                    app:layout_constraintStart_toStartOf="@+id/tv_play" />
+
+                <TextView
+                    android:id="@+id/tv_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="34dp"
+                    android:onClick="@{() -> viewModel.onPlayTrailerClick()}"
+                    android:background="@drawable/bg_outline_btn"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:gravity="center"
+                    android:paddingStart="60dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="60dp"
+                    android:paddingBottom="15dp"
+                    android:text="@string/watch_trailer"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_play"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_geners"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginEnd="40dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@string/geners"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_cover" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_geners"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_geners"
+                    app:layout_constraintStart_toStartOf="@+id/tv_geners"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_geners" />
+
+                <View
+                    android:id="@+id/view_separator"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="22dp"
+                    android:background="#D7D7D7"
+                    app:layout_constraintEnd_toEndOf="@+id/rv_geners"
+                    app:layout_constraintStart_toStartOf="@+id/rv_geners"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_geners" />
+
+                <TextView
+                    android:id="@+id/tv_overview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@string/overview"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/view_separator"
+                    app:layout_constraintStart_toStartOf="@+id/view_separator"
+                    app:layout_constraintTop_toBottomOf="@+id/view_separator" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:hint="As a collection of history's worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them. Discover the origins of the very first independent intelligence agency in The King's Man. The Comic Book “The Secret Service” by Mark Millar and Dave Gibbons."
+                    android:text="@{viewModel.movieOverview}"
+                    android:textColor="#8F8F8F"
+                    android:textColorHint="#8F8F8F"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_overview"
+                    app:layout_constraintStart_toStartOf="@+id/tv_overview"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </FrameLayout>
+</layout>
